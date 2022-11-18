@@ -50,7 +50,7 @@ esp32:
       CONFIG_COMPILER_CXX_EXCEPTIONS: "y" # for espidf >= 4.4.3 (some internal components use exceptions)
       CONFIG_ESP_ERR_TO_NAME_LOOKUP: "y" # for better error messages in ESP_ERROR_CHECK
       CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240: "y"
-      CONFIG_SPI_MASTER_IN_IRAM: "y" # may help with speed SPEED ?
+      CONFIG_SPI_MASTER_IN_IRAM: "y" # may help with speed? But is not required to make it work.
 
 external_components:
   # workaround till supported https://github.com/esphome/feature-requests/issues/1649#issuecomment-1280938155
