@@ -38,14 +38,13 @@ CONFIG_SCHEMA = cv.All(
             cv.Required(CONF_MISO_PIN): pins.internal_gpio_input_pin_number,
             cv.Required(CONF_MOSI_PIN): pins.internal_gpio_output_pin_number,
             cv.Required(CONF_CS_PIN): pins.internal_gpio_output_pin_number,
-
             cv.Required(CONF_IRQ_PIN): pins.internal_gpio_input_pin_number,
-            cv.Optional(CONF_RESET_PIN): pins.internal_gpio_output_pin_number,  # default -1 (disabled)
-            # W5500 should operate stable at 33.3 according to the datasheet.
+            # default internally to -1 if not set (means disabled)
+            cv.Optional(CONF_RESET_PIN): pins.internal_gpio_output_pin_number,
+            # W5500 should operate stable up to 33.3 according to the datasheet.
             cv.Optional(CONF_CLOCK_SPEED, default=30): cv.int_range(1, 80),  # type: ignore[arg-type]
         }
     ).extend(cv.COMPONENT_SCHEMA),
-    # _validate,
     cv.only_with_esp_idf,
 )
 
