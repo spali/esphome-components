@@ -3,7 +3,6 @@
 #include <esp_system.h>
 #include <esp_err.h>
 #include <esp_eth.h>
-#include <esp_mac.h>
 #include <esp_event.h>
 #include <esp_netif.h>
 #include <driver/gpio.h>
@@ -13,9 +12,6 @@
 
 #include "esphome/core/log.h"
 #include "esphome/core/helpers.h"
-
-// SPI Stuff from:
-// https://github.com/SmingHub/Sming/blob/7ca48ebbb4b96fe42ecae13f53ac0c8505699c0b/Sming/Components/Network/Arch/Esp32/Network/spi_config.h
 
 namespace esphome {
 namespace ethernet_spi {
@@ -97,18 +93,20 @@ void EthernetComponent::setup() {
   spi_device_handle_t spi_handle = nullptr;
 
   spi_bus_config_t buscfg = {
-      .mosi_io_num = this->mosi_pin_,
-      .miso_io_num = this->miso_pin_,
-      .sclk_io_num = this->clk_pin_,
-      .quadwp_io_num = -1,
-      .quadhd_io_num = -1,
-      .data4_io_num = -1,
-      .data5_io_num = -1,
-      .data6_io_num = -1,
-      .data7_io_num = -1,
-      .max_transfer_sz = 0,
-      .flags = 0,
-      .intr_flags = 0,
+    .mosi_io_num = this->mosi_pin_,
+    .miso_io_num = this->miso_pin_,
+    .sclk_io_num = this->clk_pin_,
+    .quadwp_io_num = -1,
+    .quadhd_io_num = -1,
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(4, 4, 0)
+    .data4_io_num = -1,
+    .data5_io_num = -1,
+    .data6_io_num = -1,
+    .data7_io_num = -1,
+#endif
+    .max_transfer_sz = 0,
+    .flags = 0,
+    .intr_flags = 0,
   };
 
   ESP_ERROR_CHECK(spi_bus_initialize(SPI3_HOST, &buscfg, SPI_DMA_CH_AUTO));
