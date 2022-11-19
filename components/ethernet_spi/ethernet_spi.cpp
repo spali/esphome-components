@@ -133,7 +133,7 @@ void EthernetComponent::setup() {
   // w5500 ethernet driver is based on spi driver
   eth_w5500_config_t w5500_config = ETH_W5500_DEFAULT_CONFIG(spi_handle);
   // Set remaining GPIO numbers and configuration used by the SPI module
-  w5500_config.int_gpio_num = this->irq_pin_;
+  w5500_config.int_gpio_num = this->interrupt_pin_;
   phy_config_spi.phy_addr = this->phy_addr_;
   phy_config_spi.reset_gpio_num = this->reset_pin_;
 
@@ -341,7 +341,7 @@ void EthernetComponent::dump_config() {
   ESP_LOGCONFIG(TAG, "  MISO Pin: %u", this->miso_pin_);
   ESP_LOGCONFIG(TAG, "  MOSI Pin: %u", this->mosi_pin_);
   ESP_LOGCONFIG(TAG, "  CS Pin: %u", this->cs_pin_);
-  ESP_LOGCONFIG(TAG, "  IRQ Pin: %u", this->irq_pin_);
+  ESP_LOGCONFIG(TAG, "  IRQ Pin: %u", this->interrupt_pin_);
   ESP_LOGCONFIG(TAG, "  Reset Pin: %d", this->reset_pin_);
   ESP_LOGCONFIG(TAG, "  Clock Speed: %d MHz", this->clock_speed_ / 1000000);
   ESP_LOGCONFIG(TAG, "  Type: %s", eth_type.c_str());

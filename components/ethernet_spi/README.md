@@ -62,7 +62,7 @@ ethernet_spi:
   mosi_pin: GPIO35
   miso_pin: GPIO37
   cs_pin: GPIO10
-  irq_pin: GPIO6
+  interrupt_pin: GPIO6
   clock_speed: 30 # optional defaults to 30
 ```
 
