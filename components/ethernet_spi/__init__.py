@@ -62,7 +62,7 @@ async def to_code(config):
     cg.add(var.set_cs_pin(config[CONF_CS_PIN]))
     cg.add(var.set_interrupt_pin(config[CONF_INTERRUPT_PIN]))
     if CONF_RESET_PIN in config:
-        cg.add(var.set_reset(config[CONF_RESET_PIN]))
+        cg.add(var.set_reset_pin(config[CONF_RESET_PIN]))
     cg.add(var.set_clock_speed(config[CONF_CLOCK_SPEED]))
 
     add_idf_sdkconfig_option("CONFIG_ETH_USE_SPI_ETHERNET", True)
