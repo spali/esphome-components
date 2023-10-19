@@ -77,7 +77,7 @@ void EthernetComponent::setup() {
   esp_netif_config_t cfg_spi = {.base = &esp_netif_config, .driver = nullptr, .stack = ESP_NETIF_NETSTACK_DEFAULT_ETH};
 
   esp_netif_t *eth_netif_spi = nullptr;
-  esp_netif_config.if_key = "ETH_SPI";
+  esp_netif_config.if_key = "ETH_DEF";
   esp_netif_config.if_desc = "eth";
   esp_netif_config.route_prio = 30;
   eth_netif_spi = esp_netif_new(&cfg_spi);
