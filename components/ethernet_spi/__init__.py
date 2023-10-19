@@ -67,3 +67,4 @@ async def to_code(config):
 
     add_idf_sdkconfig_option("CONFIG_ETH_USE_SPI_ETHERNET", True)
     add_idf_sdkconfig_option("CONFIG_ETH_SPI_ETHERNET_W5500", True)
+    cg.add_define("USE_ETHERNET")
